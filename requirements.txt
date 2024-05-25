@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+pandas
+sqlalchemy
+azure-storage-blob
+azure-mgmt-sql
+pyodbc

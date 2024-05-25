@@ -1,0 +1,41 @@
+
+CREATE TABLE date_time_dimension (
+    date_key DATE PRIMARY KEY,
+    day INTEGER,
+    month INTEGER,
+    year INTEGER,
+    time TIME,
+    day_of_week VARCHAR(10),
+    holiday_indicator BOOLEAN,
+    -- Add other date-related attributes as needed
+);
+
+
+CREATE TABLE location_dimension (
+    location_key SERIAL PRIMARY KEY,
+    borough VARCHAR(50),
+    street_name VARCHAR(100),
+    intersection_name VARCHAR(100),
+    latitude NUMERIC,
+    longitude NUMERIC,
+    zip_code VARCHAR(10),
+    -- Add other location-related attributes as needed
+);
+
+
+CREATE TABLE vehicle_type_dimension (
+    vehicle_type_key SERIAL PRIMARY KEY,
+    vehicle_type VARCHAR(50),
+    vehicle_class VARCHAR(50),
+    -- Add other vehicle-related attributes as needed
+);
+
+--Fact Table
+CREATE TABLE traffic_volume_fact (
+    date_key DATE REFERENCES date_time_dimension(date_key),
+    location_key INTEGER REFERENCES location_dimension(location_key),
+    vehicle_type_key INTEGER REFERENCES vehicle_type_dimension(vehicle_type_key),
+    volume_count INTEGER,
+    -- Add other measures as needed
+    PRIMARY KEY (date_key, location_key, vehicle_type_key)
+);

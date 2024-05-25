@@ -1,0 +1,24 @@
+# gather_data.py
+
+import pandas as pd
+import os
+
+def gather_traffic_data():
+    # Path to your existing CSV file
+    csv_file = 'Traffic_Volume_Counts_20240515.csv'
+    
+    # Check if the CSV file exists
+    if os.path.exists(csv_file):
+        # Read the CSV file into a DataFrame
+        df = pd.read_csv(csv_file)
+        
+        # Print the DataFrame (optional)
+        print(df)
+        
+        # Continue with any further processing
+        
+    else:
+        print(f"CSV file not found at {csv_file}")
+
+if __name__ == "__main__":
+    gather_traffic_data()
